@@ -1,0 +1,10 @@
+<body>
+    <h1>eternal uri</h1>
+    <style>
+        body { background: black; color: white; font-family: sans-serif; }
+    </style>
+    <script>
+        const title = document.querySelector('h1');
+        title.onclick = () => (title.textContent = 'eternal uri'.split('').sort(() => Math.random() - 0.5).join(''));
+    </script>
+</body>
