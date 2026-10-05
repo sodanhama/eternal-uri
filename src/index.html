@@ -1,10 +1,41 @@
 <body>
-    <h1>eternal uri</h1>
+    <title>vestiges</title>
+    <input type="range" id="slider" min="0" max="100" value="20">
+    <br>
+    <canvas id="c"></canvas>
     <style>
-        body { background: black; color: white; font-family: sans-serif; }
+        body {
+            background-color: rgb(50, 50, 50);
+            color: white;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #slider {
+            scale: 2;
+        }
     </style>
     <script>
-        const title = document.querySelector('h1');
-        title.onclick = () => (title.textContent = 'eternal uri'.split('').sort(() => Math.random() - 0.5).join(''));
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const slider = document.getElementById('slider');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        slider.addEventListener('change', () => {
+            const value = slider.value;
+            addblock(value);
+        });
+
+        function addblock(value) {
+            const blockSize = Math.random() * 100 + value;
+            const x = Math.random() * (canvas.width - blockSize);
+            const y = Math.random() * (canvas.height - blockSize);
+            ctx.fillStyle = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.random()})`;
+            ctx.fillRect(x, y, blockSize, blockSize);
+        }
     </script>
 </body>
